@@ -8,7 +8,7 @@ const appColors = {
     blue: '#0000ff',
     buttonBlue: '#38B0DE',
 
-    lime: '#00ff00'
-}
+    lime: '#00ff00',
+};
 
 export default appColors;

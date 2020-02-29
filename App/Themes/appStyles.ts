@@ -1,18 +1,18 @@
-import { ViewStyle, TextStyle } from "react-native";
+import { ViewStyle, TextStyle } from 'react-native';
 
 export default {
     centerView: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
     } as ViewStyle,
 
     centerImage: {
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'column'
+        flexDirection: 'column',
     } as ViewStyle,
 
     centerText: {
-        textAlign: 'center'
+        textAlign: 'center',
     } as TextStyle,
-}
+};

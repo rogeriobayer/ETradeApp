@@ -1,11 +1,9 @@
 import React from 'react';
 
-import ProfileScreen from './ProfileScreen/ProfileScreen';
+import LoginScreen from './LoginScreen/LoginScreen';
 
 const App = () => {
-  return (
-    <ProfileScreen/>
-  );
+    return <LoginScreen />;
 };
 
 export default App;
