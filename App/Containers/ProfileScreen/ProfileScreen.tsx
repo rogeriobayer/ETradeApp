@@ -1,10 +1,23 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { NavigationProp } from '@react-navigation/native';
+import { CommonActions } from '@react-navigation/native';
+import { Dispatch, bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
+import AppButton from '../../Components/AppButton/AppButton';
+
+import { AuthenticationActions } from '../../Redux/authentication/actionCreators';
+import { AuthenticationState } from '../../Redux/authentication/state';
+import { RootState } from '../../Redux';
 import appStyles from '../../Themes/appStyles';
 import styles from './ProfileScreenStyles';
 
-export interface Props {}
+export interface Props {
+    navigation: NavigationProp<any>;
+    authenticationActions: AuthenticationActions;
+    authenticationState: AuthenticationState;
+}
 
 export interface State {}
 
@@ -13,15 +26,56 @@ class ProfileScreen extends React.Component<Props, State> {
         super(props);
     }
 
+    componentDidUpdate() {
+        const { navigation, authenticationState } = this.props;
+        if (authenticationState.user == null) {
+            navigation.dispatch(
+                CommonActions.reset({
+                    index: 1,
+                    routes: [{ name: 'LoginScreen' }],
+                }),
+            );
+        }
+    }
+
+    onLoginPress = () => {
+        const { authenticationActions } = this.props;
+        authenticationActions.logoutRequest();
+    };
+
     render() {
+        const { authenticationState } = this.props;
         return (
             <View style={[appStyles.centerView]}>
                 <Text style={[appStyles.centerText, styles.greetingText]}>
-                    Hello User!
+                    Hello {authenticationState.user!.name}!
                 </Text>
+
+                <View style={[styles.optionContainer]}>
+                    <AppButton
+                        text={'LogOut'}
+                        onPress={() => this.onLoginPress()}
+                    />
+                </View>
             </View>
         );
     }
 }
 
-export default ProfileScreen;
+const mapStateToProps = (state: RootState) => ({
+    authenticationState: state.authentication,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        authenticationActions: bindActionCreators(
+            AuthenticationActions,
+            dispatch,
+        ),
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(ProfileScreen);

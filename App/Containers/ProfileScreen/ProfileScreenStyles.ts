@@ -1,8 +1,5 @@
-import { TextStyle } from 'react-native';
-import {
-    widthPercentageToDP as wp,
-    heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import { TextStyle, ViewStyle } from 'react-native';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import appColors from '../../Themes/appColors';
 
@@ -12,4 +9,8 @@ export default {
         fontWeight: 'bold',
         fontSize: hp('5%'),
     } as TextStyle,
+
+    optionContainer: {
+        marginTop: hp('5%'),
+    } as ViewStyle,
 };

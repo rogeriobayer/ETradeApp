@@ -1,15 +1,24 @@
 import React from 'react';
 import { View } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
+import { Dispatch, bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import AppButton from '../../Components/AppButton/AppButton';
 import AppInput from '../../Components/AppInput/AppInput';
 
+import { AuthenticationActions } from '../../Redux/authentication/actionCreators';
+import { AuthenticationState } from '../../Redux/authentication/state';
+import { RequestStatus } from '../../Models/RequestStatus';
+import { Login } from '../../Models/Login';
+import { RootState } from '../../Redux';
 import appStyles from '../../Themes/appStyles';
 import styles from './LoginScreenStyles';
 
 export interface Props {
     navigation: NavigationProp<any>;
+    authenticationActions: AuthenticationActions;
+    authenticationState: AuthenticationState;
 }
 
 export interface State {
@@ -27,6 +36,13 @@ class LoginScreen extends React.Component<Props, State> {
         };
     }
 
+    componentDidUpdate() {
+        const { navigation, authenticationState } = this.props;
+        if (authenticationState.status == RequestStatus.SUCCESS) {
+            navigation.replace('ProfileScreen');
+        }
+    }
+
     onChangeEmail = (text: string) => {
         this.setState({
             email: text,
@@ -40,8 +56,13 @@ class LoginScreen extends React.Component<Props, State> {
     };
 
     onLoginPress = () => {
-        const { navigation } = this.props;
-        navigation.replace("ProfileScreen");
+        const { authenticationActions } = this.props;
+        const { email, password } = this.state;
+        const auth: Login = {
+            email,
+            password,
+        };
+        authenticationActions.loginRequest(auth);
     };
 
     render() {
@@ -78,4 +99,20 @@ class LoginScreen extends React.Component<Props, State> {
     }
 }
 
-export default LoginScreen;
+const mapStateToProps = (state: RootState) => ({
+    authenticationState: state.authentication,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        authenticationActions: bindActionCreators(
+            AuthenticationActions,
+            dispatch,
+        ),
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(LoginScreen);
