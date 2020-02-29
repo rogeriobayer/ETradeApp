@@ -1,9 +1,11 @@
 import React from 'react';
 
-import LoginScreen from './LoginScreen/LoginScreen';
+import StackNavigator from '../Navigation/StackNavigator';
 
 const App = () => {
-    return <LoginScreen />;
+    return (
+        <StackNavigator/>
+    );
 };
 
 export default App;

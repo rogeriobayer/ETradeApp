@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import { NavigationProp } from '@react-navigation/native';
 
 import AppButton from '../../Components/AppButton/AppButton';
 import AppInput from '../../Components/AppInput/AppInput';
@@ -7,7 +8,9 @@ import AppInput from '../../Components/AppInput/AppInput';
 import appStyles from '../../Themes/appStyles';
 import styles from './LoginScreenStyles';
 
-export interface Props {}
+export interface Props {
+    navigation: NavigationProp<any>;
+}
 
 export interface State {
     email: string;
@@ -37,7 +40,8 @@ class LoginScreen extends React.Component<Props, State> {
     };
 
     onLoginPress = () => {
-        console.log('Pressed LogIn Button');
+        const { navigation } = this.props;
+        navigation.replace("ProfileScreen");
     };
 
     render() {
