@@ -14,9 +14,9 @@ export const instanceApi = (
     return api;
 };
 
-const api = instanceApi();
+export const api = instanceApi();
 
-const setAuthorizationToken = (access_token: string) => {
+export const setAuthorizationToken = (access_token: string) => {
     api.setHeader('Authorization', 'Bearer ' + access_token);
 };
 

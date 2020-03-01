@@ -26,9 +26,9 @@ class ProfileScreen extends React.Component<Props, State> {
         super(props);
     }
 
-    componentDidUpdate() {
-        const { navigation, authenticationState } = this.props;
-        if (authenticationState.user == null) {
+    shouldComponentUpdate(nextProps: Props) {
+        const { navigation } = this.props;
+        if (nextProps.authenticationState.user == null) {
             navigation.dispatch(
                 CommonActions.reset({
                     index: 1,
@@ -36,6 +36,7 @@ class ProfileScreen extends React.Component<Props, State> {
                 }),
             );
         }
+        return false;
     }
 
     onLoginPress = () => {
