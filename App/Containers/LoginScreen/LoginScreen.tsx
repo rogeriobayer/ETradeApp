@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import AppButton from '../../Components/AppButton/AppButton';
 import AppInput from '../../Components/AppInput/AppInput';
+import AppChecked from '../../Components/AppChecked/AppChecked';
 
 import { AuthenticationActions } from '../../Redux/authentication/actionCreators';
 import { AuthenticationState } from '../../Redux/authentication/state';
@@ -24,6 +25,7 @@ export interface Props {
 export interface State {
     email: string;
     password: string;
+    remember: boolean;
 }
 
 class LoginScreen extends React.Component<Props, State> {
@@ -33,6 +35,7 @@ class LoginScreen extends React.Component<Props, State> {
         this.state = {
             email: '',
             password: '',
+            remember: false,
         };
     }
 
@@ -65,8 +68,14 @@ class LoginScreen extends React.Component<Props, State> {
         authenticationActions.loginRequest(auth);
     };
 
+    onCheckedPress = (checked: boolean) => {
+        this.setState({
+            remember: checked,
+        });
+    };
+
     render() {
-        const { email, password } = this.state;
+        const { email, password, remember } = this.state;
         return (
             <View style={[appStyles.centerView]}>
                 <View style={[styles.optionContainer]}>
@@ -92,6 +101,14 @@ class LoginScreen extends React.Component<Props, State> {
                     <AppButton
                         text={'LogIn'}
                         onPress={() => this.onLoginPress()}
+                    />
+                </View>
+
+                <View style={[styles.optionContainer]}>
+                    <AppChecked
+                        label={'Remember me!'}
+                        checked={remember}
+                        onPress={checked => this.onCheckedPress(checked)}
                     />
                 </View>
             </View>

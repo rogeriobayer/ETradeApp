@@ -1,5 +1,5 @@
 const appImages = {
-    userProfile: require('../Images/user/profile.jpg'),
+    checkedIcon: require('../Images/general/checkedIcon.png'),
 };
 
 export default appImages;
