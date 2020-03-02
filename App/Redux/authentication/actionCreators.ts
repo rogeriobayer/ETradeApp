@@ -9,7 +9,13 @@ export const AuthenticationActions = {
     loginSuccess: createAction<User>(AuthenticationActionTypes.LOGIN_SUCCESS),
     loginFailure: createAction<string>(AuthenticationActionTypes.LOGIN_FAILURE),
 
+    tokenRequest: createAction<string>(AuthenticationActionTypes.TOKEN_REQUEST),
+    tokenSuccess: createAction<User>(AuthenticationActionTypes.TOKEN_SUCCESS),
+    tokenFailure: createAction<string>(AuthenticationActionTypes.TOKEN_FAILURE),
+
     logoutRequest: createAction(AuthenticationActionTypes.LOGOUT_REQUEST),
+
+    cleanState: createAction(AuthenticationActionTypes.CLEAN_STATE),
 };
 
 export type AuthenticationActions = typeof AuthenticationActions;

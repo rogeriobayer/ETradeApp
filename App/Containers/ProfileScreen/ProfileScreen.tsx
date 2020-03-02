@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
-import { CommonActions } from '@react-navigation/native';
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -24,19 +23,6 @@ export interface State {}
 class ProfileScreen extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
-    }
-
-    shouldComponentUpdate(nextProps: Props) {
-        const { navigation } = this.props;
-        if (nextProps.authenticationState.user == null) {
-            navigation.dispatch(
-                CommonActions.reset({
-                    index: 1,
-                    routes: [{ name: 'LoginScreen' }],
-                }),
-            );
-        }
-        return false;
     }
 
     onLoginPress = () => {

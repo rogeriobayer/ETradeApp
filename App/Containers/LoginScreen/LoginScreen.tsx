@@ -10,11 +10,11 @@ import AppChecked from '../../Components/AppChecked/AppChecked';
 
 import { AuthenticationActions } from '../../Redux/authentication/actionCreators';
 import { AuthenticationState } from '../../Redux/authentication/state';
-import { RequestStatus } from '../../Models/RequestStatus';
 import { Login } from '../../Models/Login';
 import { RootState } from '../../Redux';
 import appStyles from '../../Themes/appStyles';
 import styles from './LoginScreenStyles';
+import { RequestStatus } from '../../Models/RequestStatus';
 
 export interface Props {
     navigation: NavigationProp<any>;
@@ -39,13 +39,6 @@ class LoginScreen extends React.Component<Props, State> {
         };
     }
 
-    componentDidUpdate() {
-        const { navigation, authenticationState } = this.props;
-        if (authenticationState.status == RequestStatus.SUCCESS) {
-            navigation.replace('ProfileScreen');
-        }
-    }
-
     onChangeEmail = (text: string) => {
         this.setState({
             email: text,
@@ -60,10 +53,11 @@ class LoginScreen extends React.Component<Props, State> {
 
     onLoginPress = () => {
         const { authenticationActions } = this.props;
-        const { email, password } = this.state;
+        const { email, password, remember } = this.state;
         const auth: Login = {
             email,
             password,
+            remember,
         };
         authenticationActions.loginRequest(auth);
     };
@@ -76,6 +70,8 @@ class LoginScreen extends React.Component<Props, State> {
 
     render() {
         const { email, password, remember } = this.state;
+        const { authenticationState } = this.props;
+        const loading = authenticationState.status == RequestStatus.WIP;
         return (
             <View style={[appStyles.centerView]}>
                 <View style={[styles.optionContainer]}>
@@ -98,10 +94,14 @@ class LoginScreen extends React.Component<Props, State> {
                 </View>
 
                 <View style={[styles.optionContainer]}>
-                    <AppButton
-                        text={'LogIn'}
-                        onPress={() => this.onLoginPress()}
-                    />
+                    {loading ? (
+                        <AppButton text={'Loading...'} onPress={() => {}} />
+                    ) : (
+                        <AppButton
+                            text={'LogIn'}
+                            onPress={() => this.onLoginPress()}
+                        />
+                    )}
                 </View>
 
                 <View style={[styles.optionContainer]}>

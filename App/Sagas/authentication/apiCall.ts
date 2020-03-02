@@ -8,6 +8,10 @@ export const authenticationCall = {
     loginRequest: (loginInfo: Login): Promise<ApiResponse<User>> => {
         return api.post<User>('/api/login', loginInfo);
     },
+
+    tokenRequest: (): Promise<ApiResponse<User>> => {
+        return api.post<User>('/api/refresh');
+    },
 };
 
 export type authenticationCall = typeof authenticationCall;

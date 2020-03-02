@@ -1,13 +1,17 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import { store } from '../Redux';
-import StackNavigator from '../Navigation/StackNavigator';
+import { store, persistor } from '../Redux';
+import RootContainer from './RootContainer/RootContainer';
+import SplashScreen from './SplashScreen/SplashScreen';
 
 const App = () => {
     return (
         <Provider store={store}>
-            <StackNavigator />
+            <PersistGate loading={<SplashScreen />} persistor={persistor}>
+                <RootContainer />
+            </PersistGate>
         </Provider>
     );
 };
