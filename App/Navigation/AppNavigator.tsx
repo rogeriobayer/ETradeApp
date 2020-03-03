@@ -5,6 +5,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import LoginScreen from '../Containers/LoginScreen/LoginScreen';
 import ProfileScreen from '../Containers/ProfileScreen/ProfileScreen';
+import TaskScreen from '../Containers/TaskScreen/TaskScreen';
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
@@ -15,8 +16,9 @@ const AuthStackScreen = () => (
 
 const AppDrawer = createDrawerNavigator();
 const AppDrawerScreen = () => (
-    <AppDrawer.Navigator>
+    <AppDrawer.Navigator initialRouteName="TaskScreen">
         <AppDrawer.Screen name="ProfileScreen" component={ProfileScreen} />
+        <AppDrawer.Screen name="TaskScreen" component={TaskScreen} />
     </AppDrawer.Navigator>
 );
 
@@ -25,7 +27,7 @@ export default function AppNavigator(loggedIn: boolean) {
     return (
         <NavigationContainer>
             <RootStack.Navigator headerMode={'none'}>
-                {loggedIn ? (
+                {!loggedIn ? (
                     <RootStack.Screen
                         name={'App'}
                         component={AppDrawerScreen}

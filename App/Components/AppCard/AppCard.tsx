@@ -2,29 +2,27 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 import appStyles from '../../Themes/appStyles';
-import styles from './AppButtonStyles';
+import styles from './AppCardStyles';
 
 export interface Props {
-    color?: string | null;
     text: string;
     onPress: () => void;
 }
 
 export interface State {}
 
-export default class AppButton extends React.Component<Props, State> {
+export default class AppCard extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
     }
 
     render() {
-        const { color, text, onPress } = this.props;
+        const { text, onPress } = this.props;
         return (
             <TouchableOpacity onPress={() => onPress()}>
                 <View
                     style={[
-                        styles.buttonContainer,
-                        color ? { backgroundColor: color } : {},
+                        styles.cardContainer,
                     ]}>
                     <Text style={[appStyles.centerText, styles.textButton]}>
                         {text}
