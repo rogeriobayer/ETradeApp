@@ -3,7 +3,7 @@ import { call, put } from 'redux-saga/effects';
 import { AnyAction } from 'redux';
 
 import { authenticationCall } from './apiCall';
-import { setAuthorizationToken } from '../../Services/api';
+import { setAuthorizationToken, EXPIRE_TIME } from '../../Services/api';
 import { AuthenticationActions } from '../../Redux/authentication/actionCreators';
 import { User } from '../../Models/User';
 
@@ -16,7 +16,7 @@ export function* loginRequest(instance: authenticationCall, action: AnyAction) {
         if (response.ok) {
             const data = response.data.dados;
             let date = new Date();
-            date.setDate(date.getDate() + 30);
+            date.setDate(date.getDate() + EXPIRE_TIME);
             const user: User = {
                 name: data.user.nome,
                 email: data.user.email,
@@ -43,7 +43,7 @@ export function* tokenRequest(instance: authenticationCall, action: AnyAction) {
         if (response.ok) {
             const data = response.data.dados;
             let date = new Date();
-            date.setDate(date.getDate() + 30);
+            date.setDate(date.getDate() + EXPIRE_TIME);
             const user: User = {
                 name: data.user.nome,
                 email: data.user.email,

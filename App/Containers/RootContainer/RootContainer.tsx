@@ -8,6 +8,7 @@ import { AuthenticationState } from '../../Redux/authentication/state';
 import { RootState } from '../../Redux';
 import { RequestStatus } from '../../Models/RequestStatus';
 import { Token } from '../../Models/Token';
+import { EXPIRE_TIME } from '../../Services/api';
 
 export interface Props {
     authenticationActions: AuthenticationActions;
@@ -28,7 +29,7 @@ class RootContainer extends React.Component<Props, State> {
             const today = +new Date();
             const diffTime = Math.abs(today - token.expires_date);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            if (diffDays > 30) {
+            if (diffDays > EXPIRE_TIME) {
                 this.state = { loggedIn: false };
             } else {
                 props.authenticationActions.tokenRequest(token.access_token);
@@ -53,10 +54,7 @@ class RootContainer extends React.Component<Props, State> {
             return false;
         }
 
-        if (
-            appStatus == RequestStatus.WIP ||
-            appStatus == RequestStatus.SUCCESS
-        ) {
+        if (appStatus != RequestStatus.NOOP) {
             return false;
         }
 

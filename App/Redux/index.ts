@@ -13,22 +13,15 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import rootSagas from '../Sagas/index';
 import { authenticationReducer } from './authentication/reducers';
 
-const persistConfig = {
-    key: 'auth',
-    storage: AsyncStorage,
-    whitelist: ['authentication'],
-    stateReconciler: autoMergeLevel2,
-};
-
+// App reducers
 const rootReducer: Reducer = combineReducers({
     authentication: authenticationReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
 
+// Redux-Saga configuration
 const sagaMiddleware = createSagaMiddleware();
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const middlewares = [];
 const enhancers: any = [];
@@ -36,8 +29,17 @@ const enhancers: any = [];
 middlewares.push(sagaMiddleware);
 enhancers.push(applyMiddleware(...middlewares));
 
-export const store = createStore(persistedReducer, compose(...enhancers));
+// Redux Persist configuration
+const persistConfig = {
+    key: 'auth',
+    storage: AsyncStorage,
+    whitelist: ['authentication'],
+    stateReconciler: autoMergeLevel2,
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+// Create store
+export const store = createStore(persistedReducer, compose(...enhancers));
 export const persistor = persistStore(store);
 
 sagaMiddleware.run(rootSagas);

@@ -14,7 +14,7 @@ const initialState: AuthenticationState = {
 const loginRequest: Reducer = (
     state: AuthenticationState,
     action: AnyAction,
-) => {
+): AuthenticationState => {
     return {
         ...state,
         remember: action.payload.remember,
@@ -25,43 +25,45 @@ const loginRequest: Reducer = (
 const loginSuccess: Reducer = (
     state: AuthenticationState,
     action: AnyAction,
-) => {
+): AuthenticationState => {
     return { ...state, user: action.payload, status: RequestStatus.SUCCESS };
 };
 
 const loginFailure: Reducer = (
     state: AuthenticationState,
     action: AnyAction,
-) => {
+): AuthenticationState => {
     return { ...state, message: action.payload, status: RequestStatus.FAILURE };
 };
 
 const tokenRequest: Reducer = (
     state: AuthenticationState,
     action: AnyAction,
-) => {
+): AuthenticationState => {
     return { ...state };
 };
 
 const tokenSuccess: Reducer = (
     state: AuthenticationState,
     action: AnyAction,
-) => {
+): AuthenticationState => {
     return { ...state, user: action.payload };
 };
 
 const tokenFailure: Reducer = (
     state: AuthenticationState,
     action: AnyAction,
-) => {
-    return { ...state, message: action.payload };
+): AuthenticationState => {
+    return { ...state };
 };
 
-const logoutRequest: Reducer = () => {
+const logoutRequest: Reducer = (): AuthenticationState => {
     return initialState;
 };
 
-const cleanState: Reducer = (state: AuthenticationState) => {
+const cleanState: Reducer = (
+    state: AuthenticationState,
+): AuthenticationState => {
     return { ...state, status: RequestStatus.NOOP };
 };
 

@@ -1,5 +1,7 @@
 import apisauce, { ApisauceInstance } from 'apisauce';
 
+export const EXPIRE_TIME = 30;
+
 export const instanceApi = (
     baseURL: string = 'https://myBackendUrl.com.br',
 ): ApisauceInstance => {
