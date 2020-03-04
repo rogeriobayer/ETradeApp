@@ -18,9 +18,9 @@ export default class AppButton extends React.Component<Props, State> {
     }
 
     render() {
-        const { color, text, onPress } = this.props;
+        const { color, text } = this.props;
         return (
-            <TouchableOpacity onPress={() => onPress()}>
+            <TouchableOpacity onPress={this.props.onPress}>
                 <View
                     style={[
                         styles.buttonContainer,
