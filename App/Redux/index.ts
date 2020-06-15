@@ -12,10 +12,12 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 import rootSagas from '../Sagas/index';
 import { authenticationReducer } from './authentication/reducers';
+import { signUpReducer } from './signUp/reducers';
 
 // App reducers
 const rootReducer: Reducer = combineReducers({
     authentication: authenticationReducer,
+    signUp: signUpReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
