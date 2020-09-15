@@ -62,6 +62,10 @@ class LoginScreen extends React.Component<Props, State> {
         authenticationActions.loginRequest(auth);
     };
 
+    onSignUpPress = () => {
+        this.props.navigation.navigate('Auth', { screen: 'SignUpScreen' });
+    };
+
     onCheckedPress = (checked: boolean) => {
         this.setState({
             remember: checked,
@@ -93,16 +97,26 @@ class LoginScreen extends React.Component<Props, State> {
                     />
                 </View>
 
-                <View style={[styles.optionContainer]}>
-                    {loading ? (
+                {loading ? (
+                    <View style={[styles.optionContainer]}>
                         <AppButton text={'Loading...'} onPress={() => {}} />
-                    ) : (
-                        <AppButton
-                            text={'LogIn'}
-                            onPress={() => this.onLoginPress()}
-                        />
-                    )}
-                </View>
+                    </View>
+                ) : (
+                    [
+                        <View key={'login'} style={[styles.optionContainer]}>
+                            <AppButton
+                                text={'LogIn'}
+                                onPress={() => this.onLoginPress()}
+                            />
+                        </View>,
+                        <View key={'signup'} style={[styles.optionContainer]}>
+                            <AppButton
+                                text={'SignUp'}
+                                onPress={() => this.onSignUpPress()}
+                            />
+                        </View>,
+                    ]
+                )}
 
                 <View style={[styles.optionContainer]}>
                     <AppChecked

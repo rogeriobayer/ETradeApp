@@ -3,7 +3,7 @@ import apisauce, { ApisauceInstance } from 'apisauce';
 export const EXPIRE_TIME = 30;
 
 export const instanceApi = (
-    baseURL: string = 'https://myBackendUrl.com.br',
+    baseURL: string = 'https://back-mobile.herokuapp.com/',
 ): ApisauceInstance => {
     const api: ApisauceInstance = apisauce.create({
         baseURL,

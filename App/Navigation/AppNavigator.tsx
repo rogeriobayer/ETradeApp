@@ -5,11 +5,13 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import LoginScreen from '../Containers/LoginScreen/LoginScreen';
 import ProfileScreen from '../Containers/ProfileScreen/ProfileScreen';
+import SignUpScreen from '../Containers/SignUpScreen/SingUpScreen';
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
-    <AuthStack.Navigator>
+    <AuthStack.Navigator initialRouteName="LoginScreen">
         <AuthStack.Screen name="LoginScreen" component={LoginScreen} />
+        <AuthStack.Screen name="SignUpScreen" component={SignUpScreen} />
     </AuthStack.Navigator>
 );
 
