@@ -5,7 +5,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import LoginScreen from '../Containers/LoginScreen/LoginScreen';
 import ProfileScreen from '../Containers/ProfileScreen/ProfileScreen';
-import SignUpScreen from '../Containers/SignUpScreen/SingUpScreen';
+import SignUpScreen from '../Containers/SignUpScreen/SignUpScreen';
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
