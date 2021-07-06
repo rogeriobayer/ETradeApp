@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -15,6 +15,9 @@ import { RootState } from '../../Redux';
 import appStyles from '../../Themes/appStyles';
 import styles from './LoginScreenStyles';
 import { RequestStatus } from '../../Models/RequestStatus';
+
+import { Button } from 'react-native-paper';
+import appImages from '../../Themes/appImages';
 
 export interface Props {
     navigation: NavigationProp<any>;
@@ -79,51 +82,19 @@ class LoginScreen extends React.Component<Props, State> {
         return (
             <View style={[appStyles.centerView]}>
                 <View style={[styles.optionContainer]}>
-                    <AppInput
-                        placeholder={'Email'}
-                        autoCapitalize={'none'}
-                        value={email}
-                        onChangeText={text => this.onChangeEmail(text)}
+                    <Image
+                        source={appImages.checkedIcon}
+                        style={[styles.image]}
                     />
                 </View>
 
                 <View style={[styles.optionContainer]}>
-                    <AppInput
-                        placeholder={'Password'}
-                        isPassword={true}
-                        autoCapitalize={'none'}
-                        value={password}
-                        onChangeText={text => this.onChangePassword(text)}
-                    />
-                </View>
-
-                {loading ? (
-                    <View style={[styles.optionContainer]}>
-                        <AppButton text={'Loading...'} onPress={() => {}} />
-                    </View>
-                ) : (
-                    [
-                        <View key={'login'} style={[styles.optionContainer]}>
-                            <AppButton
-                                text={'LogIn'}
-                                onPress={() => this.onLoginPress()}
-                            />
-                        </View>,
-                        <View key={'signup'} style={[styles.optionContainer]}>
-                            <AppButton
-                                text={'SignUp'}
-                                onPress={() => this.onSignUpPress()}
-                            />
-                        </View>,
-                    ]
-                )}
-
-                <View style={[styles.optionContainer]}>
-                    <AppChecked
-                        label={'Remember me!'}
-                        checked={remember}
-                        onPress={checked => this.onCheckedPress(checked)}
-                    />
+                    <Button
+                        mode="contained"
+                        style={[styles.entryButton]}
+                        onPress={() => console.log('Pressed')}>
+                        Entrar
+                    </Button>
                 </View>
             </View>
         );
