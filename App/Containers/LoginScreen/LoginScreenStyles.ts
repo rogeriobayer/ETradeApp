@@ -8,6 +8,8 @@ import {
 export default {
     optionContainer: {
         marginBottom: hp('5%'),
+        alignItems: 'center',
+        justifyContent: 'center',
     } as ViewStyle,
 
     entryButton: {
@@ -24,9 +26,10 @@ export default {
     },
 
     image: {
-        width: wp('5%'),
-        height: hp('5%'),
+        width: wp('20%'),
+        height: hp('20%'),
         marginLeft: wp('2.5%'),
         marginTop: hp('-0.8%'),
+        resizeMode: 'contain',
     } as ImageStyle,
 };

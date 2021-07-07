@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { NativeBaseProvider, Box } from 'native-base';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import { store, persistor } from '../Redux';
@@ -11,9 +11,9 @@ const App = () => {
     return (
         <Provider store={store}>
             <PersistGate loading={<SplashScreen />} persistor={persistor}>
-                <PaperProvider>
+                <NativeBaseProvider>
                     <RootContainer />
-                </PaperProvider>
+                </NativeBaseProvider>
             </PersistGate>
         </Provider>
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -16,7 +16,7 @@ import appStyles from '../../Themes/appStyles';
 import styles from './LoginScreenStyles';
 import { RequestStatus } from '../../Models/RequestStatus';
 
-import { Button } from 'react-native-paper';
+import { Button, Center } from 'native-base';
 import appImages from '../../Themes/appImages';
 
 export interface Props {
@@ -65,8 +65,8 @@ class LoginScreen extends React.Component<Props, State> {
         authenticationActions.loginRequest(auth);
     };
 
-    onSignUpPress = () => {
-        this.props.navigation.navigate('Auth', { screen: 'SignUpScreen' });
+    onEntryPress = () => {
+        this.props.navigation.navigate('Auth', { screen: 'ProfileScreen' });
     };
 
     onCheckedPress = (checked: boolean) => {
@@ -80,23 +80,26 @@ class LoginScreen extends React.Component<Props, State> {
         const { authenticationState } = this.props;
         const loading = authenticationState.status == RequestStatus.WIP;
         return (
-            <View style={[appStyles.centerView]}>
+            <Center flex={1}>
                 <View style={[styles.optionContainer]}>
-                    <Image
-                        source={appImages.checkedIcon}
-                        style={[styles.image]}
-                    />
+                    <Image source={appImages.ecomp} style={[styles.image]} />
                 </View>
 
                 <View style={[styles.optionContainer]}>
-                    <Button
-                        mode="contained"
-                        style={[styles.entryButton]}
-                        onPress={() => console.log('Pressed')}>
-                        Entrar
-                    </Button>
+                    <Text>aaa</Text>
                 </View>
-            </View>
+
+                <View style={[styles.optionContainer]}>
+                    {/* <Button
+                        mode="contained"
+                        icon="camera"
+                        style={[styles.entryButton]}
+                        onPress={() => this.onEntryPress()}>
+                        Entrar
+                    </Button> */}
+                    <Button onPress={() => this.onEntryPress()}>PRIMARY</Button>
+                </View>
+            </Center>
         );
     }
 }

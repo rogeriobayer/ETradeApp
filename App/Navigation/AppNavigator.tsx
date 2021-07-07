@@ -9,9 +9,10 @@ import SignUpScreen from '../Containers/SignUpScreen/SignUpScreen';
 
 const AuthStack = createStackNavigator();
 const AuthStackScreen = () => (
-    <AuthStack.Navigator initialRouteName="LoginScreen">
+    <AuthStack.Navigator initialRouteName="LoginScreen" headerMode={'none'}>
         <AuthStack.Screen name="LoginScreen" component={LoginScreen} />
         <AuthStack.Screen name="SignUpScreen" component={SignUpScreen} />
+        <AppDrawer.Screen name="ProfileScreen" component={ProfileScreen} />
     </AuthStack.Navigator>
 );
 
