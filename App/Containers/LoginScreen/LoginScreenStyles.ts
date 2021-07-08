@@ -1,4 +1,4 @@
-import { ViewStyle, ImageStyle } from 'react-native';
+import { ViewStyle, ImageStyle, TextStyle } from 'react-native';
 import appColors from '../../Themes/appColors';
 import {
     widthPercentageToDP as wp,
@@ -33,6 +33,22 @@ export default {
         marginTop: hp('-0.8%'),
         resizeMode: 'contain',
     } as ImageStyle,
+
+    imageBackground: {
+        width: wp('100%'),
+        height: hp('35%'),
+        padding: hp('10%'),
+        marginVertical: hp('8.5%'),
+        transform: [{ rotate: '180deg' }],
+        position: 'absolute',
+    } as ImageStyle,
+
+    viewBackground: {
+        width: wp('100%'),
+        height: hp('35%'),
+        transform: [{ scaleY: 1.2 }],
+        position: 'absolute',
+    } as ViewStyle,
     tradeTitle: {
         width: wp('100%'),
         height: hp('15%'),
@@ -42,5 +58,5 @@ export default {
 
     tradeHeading: {
         color: '#fff',
-    } as ViewStyle,
+    } as TextStyle,
 };

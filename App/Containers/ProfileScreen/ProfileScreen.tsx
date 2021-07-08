@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, FlatList } from 'react-native';
+import { View, Image, FlatList, ImageBackground } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -73,20 +73,34 @@ class ProfileScreen extends React.Component<Props, State> {
                 <View style={[styles.headerContainer]}>
                     <Image source={appImages.ecomp} style={[styles.image]} />
                     <View style={[styles.tradeHeading]}>
-                        <Heading size="lg">TRADE </Heading>
-                        <Text>LITE</Text>
+                        <Heading size="md" fontFamily="Raleway-ExtraBold">
+                            TRADE{' '}
+                        </Heading>
+                        <Text fontFamily="Raleway-Regular">LITE</Text>
+                    </View>
+                    <View style={[styles.viewBackground]}>
+                        <ImageBackground
+                            source={appImages.trade}
+                            resizeMode="cover"
+                            style={[styles.imageBackground]}
+                        />
                     </View>
                 </View>
 
                 <View style={[styles.listContainer]}>
                     <View style={[styles.headerOfCoins]}>
                         <View style={[styles.coinOfHeader]}>
-                            <Text fontSize="md">MOEDAS</Text>
+                            <Text fontSize="sm" fontFamily="Raleway-Regular">
+                                MOEDAS
+                            </Text>
                         </View>
                         <View>
-                            <Text fontSize="md">{'PREÇO (USD)'}</Text>
+                            <Text fontSize="sm" fontFamily="Raleway-Regular">
+                                {'PREÇO (USD)'}
+                            </Text>
                             <Text
                                 fontSize="xs"
+                                fontFamily="Raleway-Regular"
                                 style={[
                                     {
                                         marginRight: 3,
@@ -110,7 +124,7 @@ class ProfileScreen extends React.Component<Props, State> {
                                 String(index)
                             }
                             renderItem={({ item }) => (
-                                <Box shadow={0} my={0} rounded="lg" w={'100%'}>
+                                <Box my={0} rounded="lg" w={'100%'}>
                                     <View style={[styles.boxOfCoin]}>
                                         <Stack space={0} p={[4, 4, 8]}>
                                             <View style={[styles.coinTitle]}>
@@ -121,12 +135,15 @@ class ProfileScreen extends React.Component<Props, State> {
                                                 </Heading>
                                                 <Text
                                                     fontSize="xs"
+                                                    fontFamily="Raleway-Regular"
                                                     style={[styles.coinRank]}>
                                                     {item.rank + 'º'}
                                                 </Text>
                                             </View>
 
-                                            <Text fontSize="sm">
+                                            <Text
+                                                fontSize="sm"
+                                                fontFamily="Raleway-Regular">
                                                 {'(' + item.symbol + ')'}
                                             </Text>
                                         </Stack>
@@ -134,16 +151,17 @@ class ProfileScreen extends React.Component<Props, State> {
                                             style={[styles.stackOfPrice]}
                                             p={[4, 4, 8]}>
                                             <Box
+                                                style={[styles.boxOfPrice]}
                                                 bg={this.colorOf(
                                                     'card',
                                                     item.percent_change_24h,
                                                 )}
                                                 p={1}
-                                                shadow={0}
                                                 rounded="20px"
                                                 _text={{
                                                     fontSize: 'sm',
-                                                    fontWeight: 'bold',
+                                                    fontFamily: 'Raleway',
+                                                    fontWeight: '800',
                                                     color: this.colorOf(
                                                         'text',
                                                         item.percent_change_24h,
@@ -152,7 +170,8 @@ class ProfileScreen extends React.Component<Props, State> {
                                                 {item.price_usd}
                                             </Box>
                                             <Text
-                                                fontSize="sm"
+                                                fontSize="xs"
+                                                fontFamily="Raleway-Regular"
                                                 style={[styles.coinVariation]}>
                                                 {item.percent_change_24h}
                                             </Text>

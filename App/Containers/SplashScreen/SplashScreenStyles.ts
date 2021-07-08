@@ -1,4 +1,4 @@
-import { TextStyle, ViewStyle } from 'react-native';
+import { ImageStyle, TextStyle, ViewStyle } from 'react-native';
 import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp,

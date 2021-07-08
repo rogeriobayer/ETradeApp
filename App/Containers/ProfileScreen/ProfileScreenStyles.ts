@@ -33,15 +33,13 @@ export default {
         justifyContent: 'space-between',
     } as ViewStyle,
 
-    stackOfPrice: {} as ViewStyle,
-
     headerContainer: {
         marginVertical: hp('1%'),
         flexDirection: 'row',
     } as ViewStyle,
 
     listContainer: {
-        height: hp('86%'),
+        height: hp('93%'),
         // marginVertical: hp('1%'),
     } as ViewStyle,
 
@@ -73,8 +71,24 @@ export default {
     image: {
         width: wp('8%'),
         height: hp('8%'),
-        marginLeft: wp('2.5%'),
+        marginLeft: wp('3.5%'),
         resizeMode: 'contain',
         tintColor: '#000000',
     } as ImageStyle,
+
+    imageBackground: {
+        width: wp('100%'),
+        height: hp('20%'),
+        // padding: hp('5%'),
+        // marginVertical: hp('8.5%'),
+        transform: [{ rotate: '240deg' }],
+        position: 'absolute',
+    } as ImageStyle,
+
+    viewBackground: {
+        width: wp('100%'),
+        height: hp('20%'),
+        marginLeft: wp('52%'),
+        position: 'absolute',
+    } as ViewStyle,
 };

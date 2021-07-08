@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, ImageBackground } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -85,26 +85,24 @@ class LoginScreen extends React.Component<Props, State> {
                 <View style={[styles.optionContainer]}>
                     <Image source={appImages.ecomp} style={[styles.image]} />
                 </View>
-
-                <Box
-                    style={[styles.tradeTitle]}
-                    bg={{
-                        linearGradient: {
-                            colors: [
-                                'white',
-                                'emerald.300',
-                                'emerald.300',
-                                'emerald.400',
-                            ],
-                        },
-                    }}
-                    p={7}
-                    rounded="lg">
+                <View style={[styles.viewBackground]}>
+                    <ImageBackground
+                        source={appImages.trade}
+                        resizeMode="cover"
+                        style={[styles.imageBackground]}
+                    />
+                </View>
+                <Box style={[styles.tradeTitle]} p={7} rounded="lg">
                     <Center flex={1}>
-                        <Heading style={[styles.tradeHeading]}>TRADE </Heading>
-                        <Text>LITE</Text>
+                        <Text
+                            fontFamily="Raleway-ExtraBold"
+                            fontSize="4xl"
+                            style={[styles.tradeHeading]}>
+                            TRADE{' '}
+                        </Text>
+                        <Text fontFamily="Raleway-Regular">LITE</Text>
                     </Center>
-                </Box>
+                </Box>{' '}
                 <View style={[styles.optionContainer]}>
                     <Button
                         style={[styles.entryButton]}
