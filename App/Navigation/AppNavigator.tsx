@@ -28,17 +28,7 @@ export default function AppNavigator(loggedIn: boolean) {
     return (
         <NavigationContainer>
             <RootStack.Navigator headerMode={'none'}>
-                {loggedIn ? (
-                    <RootStack.Screen
-                        name={'App'}
-                        component={AppDrawerScreen}
-                    />
-                ) : (
-                    <RootStack.Screen
-                        name={'Auth'}
-                        component={AuthStackScreen}
-                    />
-                )}
+                <RootStack.Screen name={'Auth'} component={AuthStackScreen} />
             </RootStack.Navigator>
         </NavigationContainer>
     );

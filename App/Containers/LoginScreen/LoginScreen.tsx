@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -16,8 +16,9 @@ import appStyles from '../../Themes/appStyles';
 import styles from './LoginScreenStyles';
 import { RequestStatus } from '../../Models/RequestStatus';
 
-import { Button, Center } from 'native-base';
+import { Box, Button, Center, Heading, Text } from 'native-base';
 import appImages from '../../Themes/appImages';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export interface Props {
     navigation: NavigationProp<any>;
@@ -85,19 +86,36 @@ class LoginScreen extends React.Component<Props, State> {
                     <Image source={appImages.ecomp} style={[styles.image]} />
                 </View>
 
+                <Box
+                    style={[styles.tradeTitle]}
+                    bg={{
+                        linearGradient: {
+                            colors: [
+                                'white',
+                                'emerald.300',
+                                'emerald.300',
+                                'emerald.400',
+                            ],
+                        },
+                    }}
+                    p={7}
+                    rounded="lg">
+                    <Center flex={1}>
+                        <Heading style={[styles.tradeHeading]}>TRADE </Heading>
+                        <Text>LITE</Text>
+                    </Center>
+                </Box>
                 <View style={[styles.optionContainer]}>
-                    <Text>aaa</Text>
-                </View>
-
-                <View style={[styles.optionContainer]}>
-                    {/* <Button
-                        mode="contained"
-                        icon="camera"
+                    <Button
                         style={[styles.entryButton]}
-                        onPress={() => this.onEntryPress()}>
-                        Entrar
-                    </Button> */}
-                    <Button onPress={() => this.onEntryPress()}>PRIMARY</Button>
+                        onPress={() => this.onEntryPress()}
+                        px={25}
+                        size={'md'}
+                        endIcon={
+                            <Icon name="arrow-right" size={15} color="#fff" />
+                        }>
+                        ENTRAR
+                    </Button>
                 </View>
             </Center>
         );

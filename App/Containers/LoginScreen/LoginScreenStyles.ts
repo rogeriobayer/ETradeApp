@@ -17,6 +17,7 @@ export default {
         marginLeft: wp('20%'),
         marginRight: wp('20%'),
         borderRadius: wp('4%'),
+        backgroundColor: '#5d0eeb',
     } as ViewStyle,
     linearGradient: {
         flex: 1,
@@ -26,10 +27,20 @@ export default {
     },
 
     image: {
-        width: wp('20%'),
-        height: hp('20%'),
+        width: wp('25%'),
+        height: hp('25%'),
         marginLeft: wp('2.5%'),
         marginTop: hp('-0.8%'),
         resizeMode: 'contain',
     } as ImageStyle,
+    tradeTitle: {
+        width: wp('100%'),
+        height: hp('15%'),
+        flexDirection: 'row',
+        marginBottom: hp('5%'),
+    } as ViewStyle,
+
+    tradeHeading: {
+        color: '#fff',
+    } as ViewStyle,
 };

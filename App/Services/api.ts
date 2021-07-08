@@ -3,7 +3,7 @@ import apisauce, { ApisauceInstance } from 'apisauce';
 export const EXPIRE_TIME = 30;
 
 export const instanceApi = (
-    baseURL: string = 'https://back-mobile.herokuapp.com/',
+    baseURL: string = 'https://api.coinlore.net/api/tickers',
 ): ApisauceInstance => {
     const api: ApisauceInstance = apisauce.create({
         baseURL,

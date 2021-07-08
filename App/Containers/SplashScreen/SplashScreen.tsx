@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, ActivityIndicator, Text } from 'react-native';
+import { View, ActivityIndicator, Text, Image } from 'react-native';
 
 import appStyles from '../../Themes/appStyles';
 import appColors from '../../Themes/appColors';
 import styles from './SplashScreenStyles';
+import { Center, NativeBaseProvider, Spinner } from 'native-base';
+import appImages from '../../Themes/appImages';
 
 export interface Props {}
 
@@ -16,14 +18,12 @@ class SplashScreen extends React.Component<Props, State> {
 
     render() {
         return (
-            <View style={[appStyles.centerView]}>
-                <ActivityIndicator size={100} color={appColors.blue} />
-                <View style={[styles.textView]}>
-                    <Text style={[appStyles.centerText, styles.loadingText]}>
-                        Loading...
-                    </Text>
-                </View>
-            </View>
+            <NativeBaseProvider>
+                <Center flex={1}>
+                    <Image source={appImages.ecomp} style={[styles.image]} />
+                    <Spinner accessibilityLabel="Loading" />
+                </Center>
+            </NativeBaseProvider>
         );
     }
 }
